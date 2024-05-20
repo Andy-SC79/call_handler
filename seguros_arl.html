@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ARL
+{% endblock title %}
+
+{% include 'embed.html' %}
+
+{% block content %}
+
+<!--h1>App___3rduN</h1 -->
+
+<div class="align-center">
+	<div class="embed-responsive embed-responsive-1by1"> <iframe class="embed-responsive-item" src="https://kingdonshome.findyourbed.com"  frameborder="0" width="100%" min-width="576" height="738"style="border: none;" ></iframe></div>
+</div>
+
+{% endblock content %}
+
+{% block custom_js %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the div element by class name
+        var headerBar = document.querySelector('.HeaderBar___gMuB1');
+
+        // Check if the div element with the specified class exists
+        if (headerBar) {
+            // Hide the div and its child elements by setting the display property to 'none'
+            headerBar.style.display = 'none';
+
+            // If there are child elements, hide them as well
+            var childElements = headerBar.querySelectorAll('[style="object-fit: contain;"]');
+            childElements.forEach(function(childElement) {
+                childElement.style.display = 'none';
+            });
+        }
+    });
+</script>
+{% endblock custom_js %}
