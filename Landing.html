@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container display-5">
+    <div class="input-group mb-3 mt-3"><!-- search phone box -->
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-telephone-fill"></i></span>
+        </div>
+        
+            <input id="phone_number" name="phone_number" type="number" class="form-control" placeholder="Phone Number" aria-label="Phone Number" aria-describedby="basic-addon1">
+            <form method="POST">
+			    {% csrf_token %}
+			    {{ form.as_p }}
+            <button type="submit" class="btn btn-dark">Search</a></button>
+        	</form>
+        
+    </div><!-- /search phone box -->
+
+
+    <a href="/number={{ phone_number }}&name=search">Search</a>
+
+
+	<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+	    {% if display.wfid %}
+	        {% for id in display.wfid %}
+	        <button type="button" class="btn btn-primary">
+	            <a title="{{ form }}" target="_blank" style="text-decoration:none; color:white" href="https://crm.rwsgateway.com/timeline_wf.html?wfid= {{ id }}">{{ id }}</a>
+	        </button>
+	        {% endfor %}
+	    {% else %}
+	        <button type="button" class="btn btn-dark">Nothing to show here</button>
+	    {% endif %}
+	    </div>
+	    
+	</div>
+</div>
+
+{% endblock content %}

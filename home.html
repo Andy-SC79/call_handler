@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container display-5">
+    <div class="input-group mb-3 mt-3"><!-- search phone box -->
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-telephone-fill"></i></span>
+        </div>
+        
+            <form action="/search/" method="GET">
+                <input id="phone" name="phone" type="number" class="form-control" placeholder="Phone Number" aria-label="Phone Number" aria-describedby="basic-addon1">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="input-group-append">
+                    <input type="submit" class="btn btn-dark" value="Search">
+                </div>
+            </form>
+           
+            
+            <!-- action="/number={{ display.phone_number }}&name=search" -->
+            <!--a onclick="submitForm()" href="/get_phone_number"><button type="button" class="btn btn-dark">Search {{ display.phone_number }}</button></a-->
+        
+    </div><!-- /search phone box -->
+
+    <!-- Form Django-->
+    <!--<form method="post">
+    <label class="d-none" for="phone_number">Enter Phone Number: </label>
+    <input id="phone_number1" name="phone_number" type="text" class="form-control" placeholder="Phone number" aria-label="Phone Number" aria-describedby="basic-addon1" />
+    <input type="submit" value="Search" />
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a href="{{ phone_number }}"><button type="submit">Submit</button></a>
+    </form>-->
+
+    <!-- Form JS-->
+    <!--<input type="number" id="pn" placeholder="Enter a phone number" maxlenght="15">
+
+    <a id="link" href="#"><button><input type="button" id="btn" value="Search"></button></a>
+
+    <a class="output" id="output" href="${href}"></a>-->
+
+
+    <p>You got a call from: <strong>{{ display.name }}</strong></p>
+    
+        <p>Phone: <strong>{{ display.phone_number }}</strong></p>
+        <!-- p>Webfronts ID: {{ display.wfid }}</p-->
+        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+        {% if display.wfid %}
+            {% for id in display.wfid %}
+            <button type="button" class="btn btn-primary">
+                <a title="{{ form }}" target="_blank" style="text-decoration:none; color:white" href="https://crm.rwsgateway.com/timeline_wf.html?wfid= {{ id }}">{{ id }}</a>
+            </button>
+            {% endfor %}
+        {% else %}
+            <button type="button" class="btn btn-dark">Nothing to show here</button>
+        {% endif %}
+        </div>
+        <p class="d-none">Company Name: <strong>{{ Directory.company }}</strong></p>
+        <p class="d-none">Email Address: {{ Directory.email_address }}</p>
+        <p class="d-none">Host: {{ Directory.host }}</p>
+        <p class="d-none">Host: {{ Directory.level }}</p>
+  
+</div>
+
+<script>
+    const txt = document.getElementById('pn');
+    const btn = document.getElementById('btn');
+    const output = document.getElementById('output');
+
+    function get_pn() {
+        output.innerHTML = "http://localhost:5000/number=" + txt.value + "&name=" + "?";
+        var href = output.innerHTML
+    }
+
+    btn.addEventListener('click', get_pn);
+
+    $(document).ready(function () { 
+            $("button").click(function () { 
+                $("a").prop("href", 
+"https://www.geeksforgeeks.org/web-development/"); 
+ 
+                $("#link").text('${href}'); 
+            }); 
+        });
+</script>
+
+
+
+{% endblock content %}
