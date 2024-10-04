@@ -1,17 +1,14 @@
-{% extends 'base.html' %}
-
-<% comment %}
+---
 List of aspects:
 title, body_data, custom_css, custom_js
+---
 
-<% endcomment %}
+{{ extends 'base.html' }}
+<title>
+{{ site.title }}
+</title>
 
-{% block title %}
- home page 
-{% endblock title %}
 
-
-{% block content %}
 <div class="container-fluid text-center pt-4">
   <div class="row">
     <div class="col-md-4">
@@ -26,9 +23,8 @@ title, body_data, custom_css, custom_js
   </div>
 </div>
 
-{% endblock content %}
 
-{% block custom_js %}
+
   <script>
       document.addEventListener("DOMContentLoaded", function() {
           // Get the div element by class name
@@ -41,4 +37,3 @@ title, body_data, custom_css, custom_js
           }
       });
   </script>
-{% endblock custom_js %}
